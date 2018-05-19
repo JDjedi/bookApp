@@ -1,0 +1,11 @@
+Meteor/React Stack creation Notes
+
+to begin app in command prompt enter 'meteor create [appName]'
+delete in client folder main.html, and main.js
+then run 'meteor npm install --save react react-dom@[version_number]'
+then run 'meteor npm install --save react@[version_number]'
+
+make a new main.html and main.js
+
+in main.html, see file
+in main.js, see file 
