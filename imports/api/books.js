@@ -13,6 +13,8 @@ if (Meteor.isServer) {
 			check(bookAuthor, String);
 			check(bookHasBeenRead, String);
 
+			var bookHasBeenRead = bookHasBeenRead.toLowerCase();
+
 			Books.insert({
 				book: {
 					bookName: bookName,
@@ -20,6 +22,23 @@ if (Meteor.isServer) {
 					bookHasBeenRead: bookHasBeenRead
 				}
 			})
+		},
+
+		changeReadStatus(bookObj, bookHasBeenRead) {
+			check(bookObj, Object);
+			check(bookHasBeenRead, String);
+
+			if (bookHasBeenRead === 'true') {
+				console.log(bookObj.book.bookHasBeenRead);
+				Books.update(bookObj._id, {
+					$set: { 'book.bookHasBeenRead' : "false" }
+				});
+			} else {
+				console.log(bookObj.book.bookHasBeenRead);
+				Books.update(bookObj._id, {
+					$set: { 'book.bookHasBeenRead' : "true" }
+				});
+			}
 		}
 	});
 }
