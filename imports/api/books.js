@@ -39,6 +39,10 @@ if (Meteor.isServer) {
 					$set: { 'book.bookHasBeenRead' : "true" }
 				});
 			}
+		},
+
+		deleteBook(bookObj) {
+			Books.remove(bookObj._id);
 		}
 	});
 }
