@@ -1,9 +1,9 @@
-import { Mongo } from 'meteor/mongo';
+import { Mongo } from "meteor/mongo";
 
-const Books = new Mongo.Collection('books');
+const Books = new Mongo.Collection("books");
 
 if (Meteor.isServer) {
-	Meteor.publish('allBooks', function() {
+	Meteor.publish("allBooks", function() {
 		return Books.find({});
 	});
 
@@ -21,22 +21,20 @@ if (Meteor.isServer) {
 					bookAuthor: bookAuthor,
 					bookHasBeenRead: bookHasBeenRead
 				}
-			})
+			});
 		},
 
 		changeReadStatus(bookObj, bookHasBeenRead) {
 			check(bookObj, Object);
 			check(bookHasBeenRead, String);
 
-			if (bookHasBeenRead === 'true') {
-				console.log(bookObj.book.bookHasBeenRead);
+			if (bookHasBeenRead === "true") {
 				Books.update(bookObj._id, {
-					$set: { 'book.bookHasBeenRead' : "false" }
+					$set: { "book.bookHasBeenRead": "false" }
 				});
 			} else {
-				console.log(bookObj.book.bookHasBeenRead);
 				Books.update(bookObj._id, {
-					$set: { 'book.bookHasBeenRead' : "true" }
+					$set: { "book.bookHasBeenRead": "true" }
 				});
 			}
 		},
@@ -48,4 +46,3 @@ if (Meteor.isServer) {
 }
 
 export default Books;
-
